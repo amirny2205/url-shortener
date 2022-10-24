@@ -19,5 +19,6 @@ from shortener.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('shorten', CreateLinkAPIView.as_view(), name='shorten')
+    path('shorten/', CreateLinkAPIView.as_view(), name='shorten'),
+    path('<str:shortened>/', RedirectAPIView.as_view(), name='redirect')
 ]

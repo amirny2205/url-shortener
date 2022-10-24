@@ -1,3 +1,5 @@
+import json
+
 from rest_framework import serializers
 
 from shortener.models import LinkModel
@@ -6,17 +8,15 @@ from django.conf import settings
 
 
 def shorten(seed):
-    return "test"
+    return "shrtnd"
 
 
 class LinkSerializer(serializers.ModelSerializer):
+    shortened = serializers.CharField(max_length=200, required=False)
 
 
     def to_internal_value(self, data):
-        print('flag_A')
-        print(type(data))
-        print(data)
-        new_link = []
+        new_link = {}
         new_link['redirect_to'] = data['redirect_to']
         if 'shortened' in data:
             new_link['shortened'] = data['shortened']
@@ -24,6 +24,8 @@ class LinkSerializer(serializers.ModelSerializer):
             new_link['shortened'] = shorten(data['redirect_to'])
 
         return super().to_internal_value(new_link)
+
+
 
 
     def to_representation(self, instance):

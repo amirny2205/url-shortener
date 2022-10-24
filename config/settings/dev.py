@@ -4,7 +4,7 @@ SECRET_KEY = env("SECRET_KEY")
 
 DEBUG = True
 
-DOMAIN = 'http://localhost/'
+DOMAIN = 'http://localhost:8000/'
 
 ALLOWED_HOSTS = []
 
