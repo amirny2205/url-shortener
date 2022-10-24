@@ -1,5 +1,3 @@
-In progress ...
-
 Выполнение вот этого тестового: https://github.com/avito-tech/auto-backend-trainee-assignment
 
 ### запуск сервиса:
