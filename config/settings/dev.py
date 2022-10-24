@@ -4,6 +4,8 @@ SECRET_KEY = env("SECRET_KEY")
 
 DEBUG = True
 
+DOMAIN = 'http://localhost/'
+
 ALLOWED_HOSTS = []
 
 DATABASES = {
