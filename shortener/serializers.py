@@ -1,14 +1,11 @@
-import json
-
 from rest_framework import serializers
-
 from shortener.models import LinkModel
-
 from django.conf import settings
+import random
+import string
 
-
-def shorten(seed):
-    return "shrtnd"
+def shorten():
+    return''.join(random.SystemRandom().choice(string.ascii_letters + string.digits) for _ in range(6))
 
 
 class LinkSerializer(serializers.ModelSerializer):
@@ -21,8 +18,7 @@ class LinkSerializer(serializers.ModelSerializer):
         if 'shortened' in data:
             new_link['shortened'] = data['shortened']
         else:
-            new_link['shortened'] = shorten(data['redirect_to'])
-
+            new_link['shortened'] = shorten()
         return super().to_internal_value(new_link)
 
 
