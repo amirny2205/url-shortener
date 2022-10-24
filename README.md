@@ -7,6 +7,6 @@ In progress ...
 
 запускаем (сначала миграции), затем сервер python manage.py runserver --settings=config.settings.dev
 
-теперь отправляем POST на /shorten/ с параметрами redirect_to в фомате http://www.google.com и shorten(любая строка)
+теперь отправляем POST на /shorten/ с параметрами redirect_to в фомате http://www.google.com и опционально shorten(любая строка). Нам возвращаются данные объекта ссылки.
 
 затем переходим /{shorten} и нас перенаправляет куда надо.
