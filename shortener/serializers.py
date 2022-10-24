@@ -5,7 +5,7 @@ import random
 import string
 
 def shorten():
-    return''.join(random.SystemRandom().choice(string.ascii_letters + string.digits) for _ in range(6))
+    return ''.join(random.SystemRandom().choice(string.ascii_letters + string.digits) for _ in range(6))
 
 
 class LinkSerializer(serializers.ModelSerializer):
@@ -26,7 +26,6 @@ class LinkSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         representation = super().to_representation(instance)
-        representation['shortened'] = settings.DOMAIN + representation['shortened']
 
         return representation
 
