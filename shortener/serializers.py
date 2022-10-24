@@ -1,10 +1,10 @@
 from rest_framework import serializers
 from shortener.models import LinkModel
-from django.conf import settings
+import re
 import random
 import string
 
-def shorten():
+def get_short_string():
     return ''.join(random.SystemRandom().choice(string.ascii_letters + string.digits) for _ in range(6))
 
 
@@ -18,17 +18,14 @@ class LinkSerializer(serializers.ModelSerializer):
         if 'shortened' in data:
             new_link['shortened'] = data['shortened']
         else:
-            new_link['shortened'] = shorten()
+            new_link['shortened'] = get_short_string()
         return super().to_internal_value(new_link)
 
-
-
-
-    def to_representation(self, instance):
-        representation = super().to_representation(instance)
-
-        return representation
-
+    def validate_redirect_to(self, value):
+        r ="https?://www\..*"
+        if not re.match(r, value):
+            raise serializers.ValidationError('your redirect_to doesn\'t match re "https?://www\..*"')
+        return value
 
     class Meta:
         model = LinkModel
