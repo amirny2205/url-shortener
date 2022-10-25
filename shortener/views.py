@@ -9,7 +9,6 @@ from shortener.serializers import LinkSerializer
 class CreateLinkAPIView(APIView):
 
     def post(self, request, *args, **kwargs):
-        data = request.data
         serializer = LinkSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
